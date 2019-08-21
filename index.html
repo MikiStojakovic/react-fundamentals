@@ -18,5 +18,15 @@
       crossorigin
       src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
     ></script>
+
+    <script>
+      let h1 = React.createElement(
+        "h1",
+        { id: "heading1", style: { color: "lightblue" } },
+        "Hello React"
+      );
+
+      ReactDOM.render(h1, document.getElementById("container"));
+    </script>
   </body>
 </html>
