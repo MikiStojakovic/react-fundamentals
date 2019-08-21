@@ -27,15 +27,16 @@
         "Hello React"
       );
 
-      ReactDOM.render(h1, document.getElementById("container"));
+      class MyClass extends React.Component {
+        render() {
+          return React.createElement("div", null, h1, h1, h1);
+        }
+      }
 
-      let ul = React.createElement(
-        "ul",
-        null,
-        React.createElement("li", null, "Banana"),
-        React.createElement("li", null, "Mango")
+      ReactDOM.render(
+        React.createElement(MyClass, null),
+        document.getElementById("container")
       );
-      ReactDOM.render(ul, document.getElementById("ul-div"));
     </script>
   </body>
 </html>
