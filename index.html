@@ -26,6 +26,16 @@
       src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
     ></script>
 
-    <script></script>
+    <script type="text/babel">
+      let container = document.getElementById("container");
+
+      ReactDOM.render(
+        <ul class="fruits">
+          <li class="items">Mango</li>
+          <li class="items">Banana</li>
+        </ul>,
+        container
+      );
+    </script>
   </body>
 </html>
