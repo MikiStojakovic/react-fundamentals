@@ -8,6 +8,7 @@
   </head>
   <body>
     <div id="container"></div>
+    <div id="ul-div"></div>
 
     <!--include react and react dom-->
     <script
@@ -27,6 +28,14 @@
       );
 
       ReactDOM.render(h1, document.getElementById("container"));
+
+      let ul = React.createElement(
+        "ul",
+        null,
+        React.createElement("li", null, "Banana"),
+        React.createElement("li", null, "Mango")
+      );
+      ReactDOM.render(ul, document.getElementById("ul-div"));
     </script>
   </body>
 </html>
