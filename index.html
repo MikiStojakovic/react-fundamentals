@@ -29,13 +29,23 @@
     <script type="text/babel">
       let container = document.getElementById("container");
 
-      ReactDOM.render(
-        <ul class="fruits">
-          <li class="items">Mango</li>
-          <li class="items">Banana</li>
-        </ul>,
-        container
-      );
+      //Component class
+      class Fruits extends React.Component {
+        render() {
+          let fruit_item = "Apple";
+          return (
+            <div>
+              <ul class="fruits">
+                <li class="items">Mango</li>
+                <li class="items">Banana</li>
+                <li class="items">{fruit_item}</li>
+              </ul>
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(<Fruits />, container);
     </script>
   </body>
 </html>
