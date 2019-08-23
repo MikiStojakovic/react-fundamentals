@@ -30,21 +30,21 @@
       let container = document.getElementById("container");
 
       //Component class
-      class Share extends React.Component {
+      class Logic extends React.Component {
+        getText() {
+          return "Nedo Polumenta";
+        }
+
         render() {
           return (
             <div>
-              <a {...this.props}>Visit {this.props.label}</a>
+              <a href="http://google.com">{this.getText()}</a>
             </div>
           );
         }
       }
-      let address = "http://google.com";
-      let label = "google bre";
-      ReactDOM.render(
-        <Share href={address} label={label} id="myLink" class="redirect" />,
-        container
-      );
+
+      ReactDOM.render(<Logic />, container);
     </script>
   </body>
 </html>
