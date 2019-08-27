@@ -14,9 +14,8 @@ class Timer extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Current Time</h1>
-        <h2>{this.state.date.toLocaleTimeString()}</h2>
-        {this.callMe()}
+        <h5>0</h5>
+        <button className="btn btn-warning">Click me</button>
       </div>
     );
   }
