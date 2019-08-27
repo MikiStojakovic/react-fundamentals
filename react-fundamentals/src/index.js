@@ -5,8 +5,9 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import Timer from "./Component/timer";
 import "bootstrap/dist/css/bootstrap.css";
+import Box from "./Component/functionalComponent";
 
-ReactDOM.render(<Timer me="Props" />, document.getElementById("root"));
+ReactDOM.render(<Box me="Props" />, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
