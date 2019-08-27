@@ -8,7 +8,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import Box from "./Component/functionalComponent";
 import LifeCycle from "./Component/lifeCycle";
 
-ReactDOM.render(<LifeCycle />, document.getElementById("root"));
+ReactDOM.render(<Timer />, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

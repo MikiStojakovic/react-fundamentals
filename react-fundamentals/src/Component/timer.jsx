@@ -7,6 +7,7 @@ class Timer extends Component {
       counter: 0,
       message: "Click me"
     };
+    console.log("Timer constructor called");
   }
 
   onClick = () => {
@@ -24,9 +25,29 @@ class Timer extends Component {
           {this.state.message}
         </button>
         <p>{this.state.value}</p>
+        <h6>
+          <Logger time={this.state.counter} />
+        </h6>
       </div>
     );
   }
 }
 
 export default Timer;
+
+class Logger extends Component {
+  componentWillReceiveProps(newProps) {
+    console.log("componentWillReceiveProps is triggered");
+    console.log("New Props", newProps);
+  }
+
+  shouldComponentUpdate(newProps, newState) {
+    console.log("shouldComponentUpdate is triggered");
+    console.log("New Props", newProps);
+    console.log("New State", newState);
+    return false;
+  }
+  render() {
+    return this.props.time;
+  }
+}
