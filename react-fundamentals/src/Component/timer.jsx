@@ -10,6 +10,22 @@ class Timer extends Component {
     console.log("Timer constructor called");
   }
 
+  componentWillUpdate(newProps, newState) {
+    console.log("Called before the render Method()");
+    console.log("NewProps", newProps);
+    console.log("NewState", newState);
+  }
+
+  componentDidUpdate(preProps, preState) {
+    console.log("Called after the render Method()");
+    console.log("preProps", preProps);
+    console.log("preState", preState);
+  }
+
+  componentWillUnmount() {
+    console.log("Component will unmount");
+  }
+
   onClick = () => {
     this.setState({
       counter: this.state.counter + 1,
