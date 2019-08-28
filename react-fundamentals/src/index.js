@@ -1,14 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import Timer from "./Component/timer";
 import "bootstrap/dist/css/bootstrap.css";
-import Box from "./Component/functionalComponent";
-import LifeCycle from "./Component/lifeCycle";
+import Button from "./Component/button";
 
-ReactDOM.render(<Timer />, document.getElementById("root"));
+ReactDOM.render(<Button />, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
