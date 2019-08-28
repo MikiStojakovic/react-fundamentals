@@ -13,9 +13,11 @@ class Button extends Component {
   render() {
     return (
       <div className="App">
-        <button className="btn btn-warning" onClick={this.handlerMe}>
-          Save
-        </button>
+        <div className="child">
+          <p onMouseOver={event => console.log("onMouse over " + event.target)}>
+            Hover me
+          </p>
+        </div>
       </div>
     );
   }
