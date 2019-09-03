@@ -7,16 +7,55 @@ import { async } from "q";
 import Weather from "./component/weather.component";
 
 const ApiKey = "a02cd43f14960cb92ea6e2b5fce662fc";
-// api.openweathermap.org/data/2.5/weather?q=London,uk
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
       city: undefined,
-      country: undefined
+      country: undefined,
+      icon: undefined,
+      main: undefined,
+      celsius: undefined,
+      temp_max: undefined,
+      temp_min: undefined,
+      description: undefined,
+      error: false
     };
     this.getWeather();
+  }
+
+  convertKelvinToCelsius(temp) {
+    let celsius = Math.floor(temp - 273.15);
+    return celsius;
+  }
+
+  getWeatherIcon(icons, rangeId) {
+    switch (true) {
+      case rangeId >= 200 && rangeId <= 232:
+        this.setState({ icon: this.weatherIcon.Thunderstorm });
+        break;
+      case rangeId >= 300 && rangeId <= 321:
+        this.setState({ icon: this.weatherIcon.Drizzle });
+        break;
+      case rangeId >= 500 && rangeId <= 531:
+        this.setState({ icon: this.weatherIcon.Show });
+        break;
+      case rangeId >= 600 && rangeId <= 622:
+        this.setState({ icon: this.weatherIcon.Drizzle });
+        break;
+      case rangeId >= 701 && rangeId <= 781:
+        this.setState({ icon: this.weatherIcon.Atmosphere });
+        break;
+      case rangeId == 800:
+        this.setState({ icon: this.weatherIcon.Clear });
+        break;
+      case rangeId >= 801 && rangeId <= 804:
+        this.setState({ icon: this.weatherIcon.Clouds });
+        break;
+      default:
+        this.setState({ icon: this.weatherIcon.Clouds });
+    }
   }
 
   getWeather = async () => {
@@ -24,19 +63,43 @@ class App extends React.Component {
       `http://api.openweathermap.org/data/2.5/weather?q=Novi%20Sad,RS&appId=${ApiKey}`
     );
 
+    this.weatherIcon = {
+      Thunderstorm: "wi-thunderstorm",
+      Drizzle: "wi-sleet",
+      Rain: "wi-storm-showers",
+      Show: "wi-snow",
+      Atmosphere: "wi-fog",
+      Clear: "wi-day-sunny",
+      Clouds: "wi-day-fog"
+    };
+
     const response = await api_call.json();
     console.log(response);
 
     this.setState({
       city: response.name,
-      country: response.sys.country
+      country: response.sys.country,
+      celsius: this.convertKelvinToCelsius(response.main.temp),
+      temp_min: this.convertKelvinToCelsius(response.main.temp_min),
+      temp_max: this.convertKelvinToCelsius(response.main.temp_max),
+      description: response.weather[0].description
     });
+
+    this.getWeatherIcon(this.weatherIcon, response.weather[0].id);
   };
 
   render() {
     return (
       <div className="App">
-        <Weather city={this.state.city} country={this.state.country}></Weather>
+        <Weather
+          city={this.state.city}
+          country={this.state.country}
+          temp_celcius={this.state.celsius}
+          temp_max={this.state.temp_max}
+          temp_min={this.state.temp_min}
+          description={this.state.description}
+          weatherIcon={this.state.icon}
+        ></Weather>
       </div>
     );
   }
