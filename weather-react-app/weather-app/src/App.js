@@ -4,14 +4,18 @@ import "./App.css";
 import "weather-icons/css/weather-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { async } from "q";
+import Weather from "./component/weather.component";
 
-const ApiKey = "";
+const ApiKey = "a02cd43f14960cb92ea6e2b5fce662fc";
 // api.openweathermap.org/data/2.5/weather?q=London,uk
 
 class App extends React.Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      city: undefined,
+      country: undefined
+    };
     this.getWeather();
   }
 
@@ -22,16 +26,17 @@ class App extends React.Component {
 
     const response = await api_call.json();
     console.log(response);
+
+    this.setState({
+      city: response.name,
+      country: response.sys.country
+    });
   };
 
-  state = {};
   render() {
     return (
       <div className="App">
-        <h1>Weather App</h1>
-        <h5 className="py-4">
-          <i className="wi wi-day-sunny"></i>
-        </h5>
+        <Weather city={this.state.city} country={this.state.country}></Weather>
       </div>
     );
   }
