@@ -59,10 +59,30 @@ class App extends React.Component {
     }
   }
 
-  getWeather = async () => {
-    const api_call = await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=Novi%20Sad,RS&appId=${ApiKey}`
-    );
+  getWeather = async e => {
+    let city;
+    let country;
+
+    if (e) {
+      e.preventDefault();
+      city = e.target.elements.city.value;
+      country = e.target.elements.country.value;
+    }
+
+    // const api_call = await fetch(
+    //   `http://api.openweathermap.org/data/2.5/weather?q=Novi%20Sad,RS&appId=${ApiKey}`
+    // );
+
+    let api_call;
+    if (city && country) {
+      api_call = await fetch(
+        `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appId=${ApiKey}`
+      );
+    } else {
+      api_call = await fetch(
+        `http://api.openweathermap.org/data/2.5/weather?q=Novi%20Sad,RS&appId=${ApiKey}`
+      );
+    }
 
     this.weatherIcon = {
       Thunderstorm: "wi-thunderstorm",
@@ -92,7 +112,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Form></Form>
+        <Form loadWeather={this.getWeather}></Form>
         <Weather
           city={this.state.city}
           country={this.state.country}
