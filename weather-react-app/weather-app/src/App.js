@@ -102,7 +102,8 @@ class App extends React.Component {
       celsius: this.convertKelvinToCelsius(response.main.temp),
       temp_min: this.convertKelvinToCelsius(response.main.temp_min),
       temp_max: this.convertKelvinToCelsius(response.main.temp_max),
-      description: response.weather[0].description
+      description: response.weather[0].description,
+      error: false
     });
 
     this.getWeatherIcon(this.weatherIcon, response.weather[0].id);
