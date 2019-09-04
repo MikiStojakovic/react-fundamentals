@@ -98,8 +98,7 @@ class App extends React.Component {
     console.log(response);
 
     this.setState({
-      city: response.name,
-      country: response.sys.country,
+      city: `${response.name}, ${response.sys.country}`,
       celsius: this.convertKelvinToCelsius(response.main.temp),
       temp_min: this.convertKelvinToCelsius(response.main.temp_min),
       temp_max: this.convertKelvinToCelsius(response.main.temp_max),
